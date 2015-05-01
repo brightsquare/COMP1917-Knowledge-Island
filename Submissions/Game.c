@@ -18,6 +18,8 @@
 #define RIGHT 2
 #define LEFT 3
 
+#define NO_DISCIPLINE 6
+
 #define NUM_RESOURCES 6
 #define STARTING_POINTS_PER_PLAYER 2
 #define NUM_VERTICES_PER_REGION 6
@@ -37,6 +39,13 @@ typedef struct _player{
 	vertex *start[STARTING_POINTS_PER_PLAYER];
 }player;
 
+typedef struct _region{
+ int regionID; 
+ int diceVal;
+ vertex* list[NUM_VERTICES_PER_REGION];
+ int discipline;
+}region;//actual game
+
 typedef struct _vertex{
  	//owner of this vertex or NULL
  	player *owner;
@@ -46,10 +55,10 @@ typedef struct _vertex{
  	int vertexID;
  	//ARC grants corresponding with neighbor, see example
  	int ARC[DIRECTIONS];
-  int region[REGIONS_PER_VERTEX];
+    region *regions[REGIONS_PER_VERTEX];
  	//next pointers to neghboring vertices
  	struct _vertex *next, *neighbor[DIRECTIONS];
- 	//neighbor order is CLOCKWISE, example coming soon
+ 	int training;
 }vertex;
 /*
 Example for arc
@@ -61,18 +70,14 @@ also for vertex 1
 ARC[LEFT] = ARC_A
 where neighbor[LEFT] = {vertexID = 0}
 */
-typedef struct _region{
- int regionID; 
- int diceVal;
- vertex* list[NUM_VERTICES_PER_REGION];
- int discipline;
-}region;//actual game
+
+
 struct _game{
  vertex* origin;
  region regions[NUM_REGIONS];
  int whoseTurn;
- int numDice;
+ int diceValue;
  int numG08;
- int mostARC,mostPublication;
+ player *mostARC,*mostPublication;
  player playerObjects[NUM_UNIS];
 };

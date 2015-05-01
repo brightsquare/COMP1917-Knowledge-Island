@@ -12,7 +12,7 @@
 
 static void testGame();
 
-int main(int argc, char *argv[])
+void main(int argc, char *argv[])
 {
 	testGame();
 	return EXIT_SUCCESS;
