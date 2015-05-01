@@ -72,9 +72,198 @@ static void testGame(){
 			}
 			i++;
 		}
+    
+    throwDice(g,6);
+    action a1;
+    a1.actionCode=OBTAIN_ARC;
+    a1.destination[0]="L";
+    a1.destination[1]="\0";
+    makeAction(g,a1);
+    //check isLegal(not finished)
+    
+    assert(getMostARCs(g) == UNI_A);
+    assert(getMostPublications(g) == NO_ONE);
+    assert(getTurnNumber(g) == 0);
+    assert(getWhoseTurn(g) == UNI_A);
+    
+    assert(getKPIpoints(g,i)==2);
+    assert(getARCs(g,UNI_A)==1);
+    assert(getG08s(g,UNI_A)==0);
+    assert(getCampuses(g,UNI_A)==2);
+    assert(getIPs(g,UNI_A)==0);
+    assert(getPublications(g,UNI_A)==0);
+    
+    assert(getStudents(g,UNI_A,STUDENT_THD)==0);
+    assert(getStudents(g,UNI_A,STUDENT_BPS)==2);
+    assert(getStudents(g,UNI_A,STUDENT_BQN)==2);
+    assert(getStudents(g,UNI_A,STUDENT_MJ)==2);
+    assert(getStudents(g,UNI_A,STUDENT_MTV)==1);
+    assert(getStudents(g,UNI_A,STUDENT_MMONEY)==1);
+    
+    i=UNI_B;
+    while(i<=UNI_C){
+        assert(getKPIpoints(g,i)==0);
+        assert(getARCs(g,i)==0);
+        assert(getG08s(g,i)==0);
+        assert(getCampuses(g,i)==2);
+        assert(getIPs(g,i)==0);
+        assert(getPublications(g,i)==0);
+        
+        assert(getStudents(g,i,STUDENT_THD)==0);
+        assert(getStudents(g,i,STUDENT_BPS)==3);
+        assert(getStudents(g,i,STUDENT_BQN)==3);
+        assert(getStudents(g,i,STUDENT_MJ)==1);
+        assert(getStudents(g,i,STUDENT_MTV)==1);
+        assert(getStudents(g,i,STUDENT_MMONEY)==1);
+        
+        j = 0;
+        while(j<6){
+            k=0;
+            while(k<6){
+                if(k!=j){
+                    assert(getExchangeRate(g,i,j,k)==3);
+                }
+            }
+            j++;
+        }
+        i++;
+    }
 
+    action a2;
+    a2.actionCode=OBTAIN_ARC;
+    a2.destination[0]="L";
+    a2.destination[1]="R";
+    a2.destination[2]="\0";
+    makeAction(g,a2);
+    
+    //check isLegal(not finished)
+    
+    assert(getMostARCs(g) == UNI_A);
+    assert(getMostPublications(g) == NO_ONE);
+    assert(getTurnNumber(g) == 0);
+    assert(getWhoseTurn(g) == UNI_A);
+    
+    assert(getKPIpoints(g,i)==4);
+    assert(getARCs(g,UNI_A)==2);
+    assert(getG08s(g,UNI_A)==0);
+    assert(getCampuses(g,UNI_A)==2);
+    assert(getIPs(g,UNI_A)==0);
+    assert(getPublications(g,UNI_A)==0);
+    
+    
+    assert(getStudents(g,UNI_A,STUDENT_THD)==0);
+    assert(getStudents(g,UNI_A,STUDENT_BPS)==1);
+    assert(getStudents(g,UNI_A,STUDENT_BQN)==1);
+    assert(getStudents(g,UNI_A,STUDENT_MJ)==2);
+    assert(getStudents(g,UNI_A,STUDENT_MTV)==1);
+    assert(getStudents(g,UNI_A,STUDENT_MMONEY)==1);
+    
+    i=UNI_B;
+    while(i<=UNI_C){
+        assert(getKPIpoints(g,i)==0);
+        assert(getARCs(g,i)==0);
+        assert(getG08s(g,i)==0);
+        assert(getCampuses(g,i)==2);
+        assert(getIPs(g,i)==0);
+        assert(getPublications(g,i)==0);
+        
+        assert(getStudents(g,i,STUDENT_THD)==0);
+        assert(getStudents(g,i,STUDENT_BPS)==3);
+        assert(getStudents(g,i,STUDENT_BQN)==3);
+        assert(getStudents(g,i,STUDENT_MJ)==1);
+        assert(getStudents(g,i,STUDENT_MTV)==1);
+        assert(getStudents(g,i,STUDENT_MMONEY)==1);
+        
+        j = 0;
+        while(j<6){
+            k=0;
+            while(k<6){
+                if(k!=j){
+                    assert(getExchangeRate(g,i,j,k)==3);
+                }
+            }
+            j++;
+        }
+        i++;
+    }
 
+    action a3;
+    a3.actionCode=BUILD_CAMPUS;
+    a3.destination[0]="L";
+    a3.destination[1]="R";
+    a3.destination[2]="\0";
+    makeAction(g,a3);
+    
+    //check isLegal(not finished)
+    
+    assert(getMostARCs(g) == UNI_A);
+    assert(getMostPublications(g) == NO_ONE);
+    assert(getTurnNumber(g) == 0);
+    assert(getWhoseTurn(g) == UNI_A);
+    
+    assert(getKPIpoints(g,i)==14);
+    assert(getARCs(g,UNI_A)==2);
+    assert(getG08s(g,UNI_A)==0);
+    assert(getCampuses(g,UNI_A)==3);
+    assert(getIPs(g,UNI_A)==0);
+    assert(getPublications(g,UNI_A)==0);
+    
+    
+    assert(getStudents(g,UNI_A,STUDENT_THD)==0);
+    assert(getStudents(g,UNI_A,STUDENT_BPS)==0);
+    assert(getStudents(g,UNI_A,STUDENT_BQN)==0);
+    assert(getStudents(g,UNI_A,STUDENT_MJ)==1);
+    assert(getStudents(g,UNI_A,STUDENT_MTV)==0);
+    assert(getStudents(g,UNI_A,STUDENT_MMONEY)==1);
+    
+    i=UNI_B;
+    while(i<=UNI_C){
+        assert(getKPIpoints(g,i)==0);
+        assert(getARCs(g,i)==0);
+        assert(getG08s(g,i)==0);
+        assert(getCampuses(g,i)==2);
+        assert(getIPs(g,i)==0);
+        assert(getPublications(g,i)==0);
+        
+        assert(getStudents(g,i,STUDENT_THD)==0);
+        assert(getStudents(g,i,STUDENT_BPS)==3);
+        assert(getStudents(g,i,STUDENT_BQN)==3);
+        assert(getStudents(g,i,STUDENT_MJ)==1);
+        assert(getStudents(g,i,STUDENT_MTV)==1);
+        assert(getStudents(g,i,STUDENT_MMONEY)==1);
+        
+        j = 0;
+        while(j<6){
+            k=0;
+            while(k<6){
+                if(k!=j){
+                    assert(getExchangeRate(g,i,j,k)==3);
+                }
+            }
+            j++;
+        }
+        i++;
+    }
+
+    throwDice(g,9)
+    //not finished
+
+    
+
+    /*
+     * disposeGame to getMostArcs           Paulus
+     * getMostPublications to getKPIpoints  Matt
+     * getArcs to end                       Sijia
+     */
 
 	disposeGame(g);
 	printf("");
 }
+
+
+
+
+
+     
+    
+
