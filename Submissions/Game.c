@@ -5,7 +5,7 @@
 	Sijia Chen
 	Mattew Philips
 */
-#include "Game-1.07.h"
+#include "Game.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -18,57 +18,61 @@
 #define RIGHT 2
 #define LEFT 3
 
+#define NUM_RESOURCES 6
+#define STARTING_POINTS_PER_PLAYER 2
+#define NUM_VERTICES_PER_REGION 6
+#define DIRECTIONS 4
+#define REGIONS_PER_VERTEX 3
 
-	typedef struct _player{
-		int playerID;
-		int KPI;
-		int numARC;
-		int numPatent;
-		int numCampus;
-		int numG08;
-		int numPublication;
-		int resources[6],ratio[6];//<<<<<<ratio is important
-		vertex *start[2];
-	}player;
 
-	typedef struct _vertex{
-	 	//owner of this vertex or NULL
-	 	player *owner;
-	 	//campus at this vertex or VACANT_VERTEX
-	 	int campus;
-	 	//vertex Id of this vertex
-	 	int vertexID;
-	 	//ARC grants corresponding with neighbor, see example
-	 	int ARC[4];
-	  int region[3];
-	 	//next pointers to neghboring vertices
-	 	struct _vertex *next, *neighbor[4];
-	 	//neighbor order is CLOCKWISE, example coming soon
-	}vertex;
-	/*
-	Example for arc
-	if arc grant  ARC_A is between two nodes say Ids 0 and 1
-	then vertex 0 will have
-	ARC[RIGHT] = ARC_A
-	where neighbor[RIGHT] = {vertexID = 1}
-	also for vertex 1
-	ARC[LEFT] = ARC_A
-	where neighbor[LEFT] = {vertexID = 0}
-	*/
-	typedef struct _region{
-	 int regionID; 
-	 int diceVal;
-	 vertex* list[6];
-	 int discipline;
-	}region;
+typedef struct _player{
+	int playerID;
+	int KPI;
+	int numARC;
+	int numPatent;
+	int numCampus;
+	int numG08;
+	int numPublication;
+	int resources[NUM_RESOURCES],ratio[NUM_RESOURCES];//<<<<<<ratio is important
+	vertex *start[STARTING_POINTS_PER_PLAYER];
+}player;
 
-	//actual game
-	struct _game{
-	 vertex* origin;
-	 region regions[NUM_REGIONS];
-	 int whoseTurn;
-	 int numDice;
-	 int numG08;
-	 int mostARC,mostPublication;
-	 player playerObjects[NUM_UNIS];
-	};
+typedef struct _vertex{
+ 	//owner of this vertex or NULL
+ 	player *owner;
+ 	//campus at this vertex or VACANT_VERTEX
+ 	int campus;
+ 	//vertex Id of this vertex
+ 	int vertexID;
+ 	//ARC grants corresponding with neighbor, see example
+ 	int ARC[DIRECTIONS];
+  int region[REGIONS_PER_VERTEX];
+ 	//next pointers to neghboring vertices
+ 	struct _vertex *next, *neighbor[DIRECTIONS];
+ 	//neighbor order is CLOCKWISE, example coming soon
+}vertex;
+/*
+Example for arc
+if arc grant  ARC_A is between two nodes say Ids 0 and 1
+then vertex 0 will have
+ARC[RIGHT] = ARC_A
+where neighbor[RIGHT] = {vertexID = 1}
+also for vertex 1
+ARC[LEFT] = ARC_A
+where neighbor[LEFT] = {vertexID = 0}
+*/
+typedef struct _region{
+ int regionID; 
+ int diceVal;
+ vertex* list[NUM_VERTICES_PER_REGION];
+ int discipline;
+}region;//actual game
+struct _game{
+ vertex* origin;
+ region regions[NUM_REGIONS];
+ int whoseTurn;
+ int numDice;
+ int numG08;
+ int mostARC,mostPublication;
+ player playerObjects[NUM_UNIS];
+};
