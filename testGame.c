@@ -86,7 +86,7 @@ static void testGame(){
     assert(getTurnNumber(g) == 0);
     assert(getWhoseTurn(g) == UNI_A);
     
-    assert(getKPIpoints(g,i)==2);
+    assert(getKPIpoints(g,UNI_A)==12); //Having the most ARC grants so get 10 KPIs
     assert(getARCs(g,UNI_A)==1);
     assert(getG08s(g,UNI_A)==0);
     assert(getCampuses(g,UNI_A)==2);
@@ -143,7 +143,7 @@ static void testGame(){
     assert(getTurnNumber(g) == 0);
     assert(getWhoseTurn(g) == UNI_A);
     
-    assert(getKPIpoints(g,i)==4);
+    assert(getKPIpoints(g,UNI_A)==14);
     assert(getARCs(g,UNI_A)==2);
     assert(getG08s(g,UNI_A)==0);
     assert(getCampuses(g,UNI_A)==2);
@@ -201,7 +201,7 @@ static void testGame(){
     assert(getTurnNumber(g) == 0);
     assert(getWhoseTurn(g) == UNI_A);
     
-    assert(getKPIpoints(g,i)==14);
+    assert(getKPIpoints(g,UNI_A)==24);
     assert(getARCs(g,UNI_A)==2);
     assert(getG08s(g,UNI_A)==0);
     assert(getCampuses(g,UNI_A)==3);
@@ -245,8 +245,291 @@ static void testGame(){
         i++;
     }
 
-    throwDice(g,9)
-    //not finished
+    throwDice(g,9);
+    action a1;
+    a1.actionCode=OBTAIN_ARC;
+    a1.destination[0]="L";
+    a1.destination[1]="\0";
+    makeAction(g,a1);
+    
+    assert(getMostARCs(g) == UNI_A);
+    assert(getMostPublications(g) == NO_ONE);
+    assert(getTurnNumber(g) == 0);
+    assert(getWhoseTurn(g) == UNI_B);
+    
+    assert(getKPIpoints(g,UNI_B)==2);
+    assert(getARCs(g,UNI_B)==1);
+    assert(getG08s(g,UNI_B)==0);
+    assert(getCampuses(g,UNI_B)==2);
+    assert(getIPs(g,UNI_B)==0);
+    assert(getPublications(g,UNI_B)==0);
+    
+    assert(getStudents(g,UNI_B,STUDENT_THD)==0);
+    assert(getStudents(g,UNI_B,STUDENT_BPS)==2);
+    assert(getStudents(g,UNI_B,STUDENT_BQN)==3);
+    assert(getStudents(g,UNI_B,STUDENT_MJ)==1);
+    assert(getStudents(g,UNI_B,STUDENT_MTV)==1);
+    assert(getStudents(g,UNI_B,STUDENT_MMONEY)==1);
+    
+    //check UNI_A is not change
+    assert(getKPIpoints(g,UNI_A)==24);
+    assert(getARCs(g,UNI_A)==2);
+    assert(getG08s(g,UNI_A)==0);
+    assert(getCampuses(g,UNI_A)==3);
+    assert(getIPs(g,UNI_A)==0);
+    assert(getPublications(g,UNI_A)==0);
+    
+    
+    assert(getStudents(g,UNI_A,STUDENT_THD)==0);
+    assert(getStudents(g,UNI_A,STUDENT_BPS)==0);
+    assert(getStudents(g,UNI_A,STUDENT_BQN)==0);
+    assert(getStudents(g,UNI_A,STUDENT_MJ)==1);
+    assert(getStudents(g,UNI_A,STUDENT_MTV)==0);
+    assert(getStudents(g,UNI_A,STUDENT_MMONEY)==1);
+    
+    //check UNI_C is not change
+    assert(getKPIpoints(g,UNI_C)==0);
+    assert(getARCs(g,UNI_C)==0);
+    assert(getG08s(g,UNI_C)==0);
+    assert(getCampuses(g,UNI_C)==2);
+    assert(getIPs(g,UNI_C)==0);
+    assert(getPublications(g,UNI_C)==0);
+    
+    assert(getStudents(g,UNI_C,STUDENT_THD)==0);
+    assert(getStudents(g,UNI_C,STUDENT_BPS)==3);
+    assert(getStudents(g,UNI_C,STUDENT_BQN)==3);
+    assert(getStudents(g,UNI_C,STUDENT_MJ)==1);
+    assert(getStudents(g,UNI_C,STUDENT_MTV)==1);
+    assert(getStudents(g,UNI_C,STUDENT_MMONEY)==1);
+    
+    action a2;
+    a2.actionCode=OBTAIN_ARC;
+    a2.destination[0]="L";
+    a2.destination[1]="R";
+    a2.destination[2]="\0";
+    makeAction(g,a2);
+    
+    assert(getMostARCs(g) == NO_ONE); //both UNI_A and UNI_B have 2 ARCs
+    assert(getMostPublications(g) == NO_ONE);
+    assert(getTurnNumber(g) == 0);
+    assert(getWhoseTurn(g) == UNI_B);
+    
+    assert(getKPIpoints(g,UNI_B)==4);
+    assert(getARCs(g,UNI_B)==2);
+    assert(getG08s(g,UNI_B)==0);
+    assert(getCampuses(g,UNI_B)==2);
+    assert(getIPs(g,UNI_B)==0);
+    assert(getPublications(g,UNI_B)==0);
+    
+    assert(getStudents(g,UNI_B,STUDENT_THD)==0);
+    assert(getStudents(g,UNI_B,STUDENT_BPS)==1);
+    assert(getStudents(g,UNI_B,STUDENT_BQN)==2);
+    assert(getStudents(g,UNI_B,STUDENT_MJ)==1);
+    assert(getStudents(g,UNI_B,STUDENT_MTV)==1);
+    assert(getStudents(g,UNI_B,STUDENT_MMONEY)==1);
+    
+    //check UNI_A is not change
+    assert(getKPIpoints(g,UNI_A)==24);
+    assert(getARCs(g,UNI_A)==2);
+    assert(getG08s(g,UNI_A)==0);
+    assert(getCampuses(g,UNI_A)==3);
+    assert(getIPs(g,UNI_A)==0);
+    assert(getPublications(g,UNI_A)==0);
+    
+    
+    assert(getStudents(g,UNI_A,STUDENT_THD)==0);
+    assert(getStudents(g,UNI_A,STUDENT_BPS)==0);
+    assert(getStudents(g,UNI_A,STUDENT_BQN)==0);
+    assert(getStudents(g,UNI_A,STUDENT_MJ)==1);
+    assert(getStudents(g,UNI_A,STUDENT_MTV)==0);
+    assert(getStudents(g,UNI_A,STUDENT_MMONEY)==1);
+    
+    //check UNI_C is not change
+    assert(getKPIpoints(g,UNI_C)==0);
+    assert(getARCs(g,UNI_C)==0);
+    assert(getG08s(g,UNI_C)==0);
+    assert(getCampuses(g,UNI_C)==2);
+    assert(getIPs(g,UNI_C)==0);
+    assert(getPublications(g,UNI_C)==0);
+    
+    assert(getStudents(g,UNI_C,STUDENT_THD)==0);
+    assert(getStudents(g,UNI_C,STUDENT_BPS)==3);
+    assert(getStudents(g,UNI_C,STUDENT_BQN)==3);
+    assert(getStudents(g,UNI_C,STUDENT_MJ)==1);
+    assert(getStudents(g,UNI_C,STUDENT_MTV)==1);
+    assert(getStudents(g,UNI_C,STUDENT_MMONEY)==1);
+
+    action a3;
+    a3.actionCode=BUILD_CAMPUS;
+    a3.destination[0]="L";
+    a3.destination[1]="R";
+    a3.destination[2]="\0";
+    makeAction(g,a3);
+    
+    assert(getMostARCs(g) == NO_ONE); //both UNI_A and UNI_B have 2 ARCs
+    assert(getMostPublications(g) == NO_ONE);
+    assert(getTurnNumber(g) == 0);
+    assert(getWhoseTurn(g) == UNI_B);
+    
+    assert(getKPIpoints(g,UNI_B)==14);
+    assert(getARCs(g,UNI_B)==2);
+    assert(getG08s(g,UNI_B)==0);
+    assert(getCampuses(g,UNI_B)==3);
+    assert(getIPs(g,UNI_B)==0);
+    assert(getPublications(g,UNI_B)==0);
+    
+    assert(getStudents(g,UNI_B,STUDENT_THD)==0);
+    assert(getStudents(g,UNI_B,STUDENT_BPS)==0);
+    assert(getStudents(g,UNI_B,STUDENT_BQN)==1);
+    assert(getStudents(g,UNI_B,STUDENT_MJ)==0);
+    assert(getStudents(g,UNI_B,STUDENT_MTV)==0);
+    assert(getStudents(g,UNI_B,STUDENT_MMONEY)==1);
+    
+    //check UNI_A is not change
+    assert(getKPIpoints(g,UNI_A)==24);
+    assert(getARCs(g,UNI_A)==2);
+    assert(getG08s(g,UNI_A)==0);
+    assert(getCampuses(g,UNI_A)==3);
+    assert(getIPs(g,UNI_A)==0);
+    assert(getPublications(g,UNI_A)==0);
+    
+    
+    assert(getStudents(g,UNI_A,STUDENT_THD)==0);
+    assert(getStudents(g,UNI_A,STUDENT_BPS)==0);
+    assert(getStudents(g,UNI_A,STUDENT_BQN)==0);
+    assert(getStudents(g,UNI_A,STUDENT_MJ)==1);
+    assert(getStudents(g,UNI_A,STUDENT_MTV)==0);
+    assert(getStudents(g,UNI_A,STUDENT_MMONEY)==1);
+    
+    //check UNI_C is not change
+    assert(getKPIpoints(g,UNI_C)==0);
+    assert(getARCs(g,UNI_C)==0);
+    assert(getG08s(g,UNI_C)==0);
+    assert(getCampuses(g,UNI_C)==2);
+    assert(getIPs(g,UNI_C)==0);
+    assert(getPublications(g,UNI_C)==0);
+    
+    assert(getStudents(g,UNI_C,STUDENT_THD)==0);
+    assert(getStudents(g,UNI_C,STUDENT_BPS)==3);
+    assert(getStudents(g,UNI_C,STUDENT_BQN)==3);
+    assert(getStudents(g,UNI_C,STUDENT_MJ)==1);
+    assert(getStudents(g,UNI_C,STUDENT_MTV)==1);
+    assert(getStudents(g,UNI_C,STUDENT_MMONEY)==1);
+
+    throwDice(g,7);
+    action a1;
+    a1.actionCode=OBTAIN_ARC;
+    a1.destination[0]="L";
+    a1.destination[1]="\0";
+    makeAction(g,a1);
+    
+    assert(getMostARCs(g) == NO_ONE); //both UNI_A and UNI_B have 2 ARCs
+    assert(getMostPublications(g) == NO_ONE);
+    assert(getTurnNumber(g) == 0);
+    assert(getWhoseTurn(g) == UNI_B);
+    
+    assert(getKPIpoints(g,UNI_C)==2);
+    assert(getARCs(g,UNI_C)==1);
+    assert(getG08s(g,UNI_C)==0);
+    assert(getCampuses(g,UNI_C)==2);
+    assert(getIPs(g,UNI_C)==0);
+    assert(getPublications(g,UNI_C)==0);
+    
+    assert(getStudents(g,UNI_C,STUDENT_THD)==2);
+    assert(getStudents(g,UNI_C,STUDENT_BPS)==2);
+    assert(getStudents(g,UNI_C,STUDENT_BQN)==2);
+    assert(getStudents(g,UNI_C,STUDENT_MJ)==1);
+    assert(getStudents(g,UNI_C,STUDENT_MTV)==0);
+    assert(getStudents(g,UNI_C,STUDENT_MMONEY)==0);
+    
+    //check UNI_A all MTV and M$ students decide to switch to ThD's
+    assert(getKPIpoints(g,UNI_A)==24);
+    assert(getARCs(g,UNI_A)==2);
+    assert(getG08s(g,UNI_A)==0);
+    assert(getCampuses(g,UNI_A)==3);
+    assert(getIPs(g,UNI_A)==0);
+    assert(getPublications(g,UNI_A)==0);
+    
+    
+    assert(getStudents(g,UNI_A,STUDENT_THD)==1);
+    assert(getStudents(g,UNI_A,STUDENT_BPS)==0);
+    assert(getStudents(g,UNI_A,STUDENT_BQN)==0);
+    assert(getStudents(g,UNI_A,STUDENT_MJ)==1);
+    assert(getStudents(g,UNI_A,STUDENT_MTV)==0);
+    assert(getStudents(g,UNI_A,STUDENT_MMONEY)==0);
+
+    //check UNI_B all MTV and M$ students decide to switch to ThD's
+    assert(getKPIpoints(g,UNI_B)==14);
+    assert(getARCs(g,UNI_B)==2);
+    assert(getG08s(g,UNI_B)==0);
+    assert(getCampuses(g,UNI_B)==3);
+    assert(getIPs(g,UNI_B)==0);
+    assert(getPublications(g,UNI_B)==0);
+    
+    assert(getStudents(g,UNI_B,STUDENT_THD)==1);
+    assert(getStudents(g,UNI_B,STUDENT_BPS)==0);
+    assert(getStudents(g,UNI_B,STUDENT_BQN)==1);
+    assert(getStudents(g,UNI_B,STUDENT_MJ)==0);
+    assert(getStudents(g,UNI_B,STUDENT_MTV)==0);
+    assert(getStudents(g,UNI_B,STUDENT_MMONEY)==0);
+
+    a2.actionCode=OBTAIN_ARC;
+    a2.destination[0]="L";
+    a2.destination[1]="R";
+    a2.destination[2]="\0";
+    makeAction(g,a2);
+    
+    assert(getMostARCs(g) == NO_ONE); //all UNIs have 2 ARCs
+    assert(getMostPublications(g) == NO_ONE);
+    assert(getTurnNumber(g) == 0);
+    assert(getWhoseTurn(g) == UNI_B);
+    
+    assert(getKPIpoints(g,UNI_C)==4);
+    assert(getARCs(g,UNI_C)==2);
+    assert(getG08s(g,UNI_C)==0);
+    assert(getCampuses(g,UNI_C)==2);
+    assert(getIPs(g,UNI_C)==0);
+    assert(getPublications(g,UNI_C)==0);
+    
+    assert(getStudents(g,UNI_C,STUDENT_THD)==2);
+    assert(getStudents(g,UNI_C,STUDENT_BPS)==1);
+    assert(getStudents(g,UNI_C,STUDENT_BQN)==1);
+    assert(getStudents(g,UNI_C,STUDENT_MJ)==1);
+    assert(getStudents(g,UNI_C,STUDENT_MTV)==0);
+    assert(getStudents(g,UNI_C,STUDENT_MMONEY)==0);
+    
+    //check UNI_A is no change
+    assert(getKPIpoints(g,UNI_A)==24);
+    assert(getARCs(g,UNI_A)==2);
+    assert(getG08s(g,UNI_A)==0);
+    assert(getCampuses(g,UNI_A)==3);
+    assert(getIPs(g,UNI_A)==0);
+    assert(getPublications(g,UNI_A)==0);
+    
+    
+    assert(getStudents(g,UNI_A,STUDENT_THD)==1);
+    assert(getStudents(g,UNI_A,STUDENT_BPS)==0);
+    assert(getStudents(g,UNI_A,STUDENT_BQN)==0);
+    assert(getStudents(g,UNI_A,STUDENT_MJ)==1);
+    assert(getStudents(g,UNI_A,STUDENT_MTV)==0);
+    assert(getStudents(g,UNI_A,STUDENT_MMONEY)==0);
+    
+    //check UNI_B is no change
+    assert(getKPIpoints(g,UNI_B)==14);
+    assert(getARCs(g,UNI_B)==2);
+    assert(getG08s(g,UNI_B)==0);
+    assert(getCampuses(g,UNI_B)==3);
+    assert(getIPs(g,UNI_B)==0);
+    assert(getPublications(g,UNI_B)==0);
+    
+    assert(getStudents(g,UNI_B,STUDENT_THD)==1);
+    assert(getStudents(g,UNI_B,STUDENT_BPS)==0);
+    assert(getStudents(g,UNI_B,STUDENT_BQN)==1);
+    assert(getStudents(g,UNI_B,STUDENT_MJ)==0);
+    assert(getStudents(g,UNI_B,STUDENT_MTV)==0);
+    assert(getStudents(g,UNI_B,STUDENT_MMONEY)==0);
+    
+    //turn 0 is finished
 
     
 
