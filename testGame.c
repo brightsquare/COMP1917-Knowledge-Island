@@ -27,6 +27,8 @@ static void testGame(){
 	Game g = newGame(disciplines,dice);
 	assert(g!=NULL);
 
+  
+
 	//############################
 	//empty game or Terra Nullis
 	//############################
@@ -42,6 +44,7 @@ static void testGame(){
 		assert(getMostPublications(g) == NO_ONE);
 		assert(getTurnNumber(g) == -1);
 		assert(getWhoseTurn(g) == NO_ONE);
+		assert()
 
 		//player functions
 		i = UNI_A
@@ -73,8 +76,129 @@ static void testGame(){
 			i++;
 		}
 
+	disposeGame(g);
+    //####################
+    //Matt's test functions
+    //####################
+
+    Game g = newGame(disciplines,dice);
+	assert(g!=NULL);
+    //Changes the game state 11 times
+    //DiceScore thrown 2,3,4...,12
+	int diceScore = 2;
+	int turnNumber = 0;
+	int whoseTurn = UNI_A;
+	i = UNI_A;
+		
+	
+	while (diceScore <= 12{
+	    throwDice (g, diceScore);
+
+	    //cycles through the players each time turnNumber is a multiple of 3
+        whoseTurn = (turnNumber%NUM_UNIS)+1;
+        //test the easy getter functions
+        assert(getWhoseTurn(g) == whoseTurn);
+        assert(getTurnNumber(g) == turnNumber);
+        //nobody has made any actions
+        while(i<=UNI_C){
+			assert(getKPIpoints(g,i)==0);
+			i++;
+		}
+        assert(getMostPublications(g) == NO_ONE);
+
+
+
+        diceScore++;
+        turnNumber++;
+    }
+
+    printf("Matt's getter functions passed after game state change!\n");
+
+    //Test the getCampus and getARC
+
+    path pathToVertex[0] = 0;
+
+    assert(getCampus(g, pathToVertex) == CAMPUS_A);
+
+    //Path to the vertex is an array with L for Left, R for Right and B for back.
+    //How are we going to represent that? 
+    //Not sure whether the 0 at the end is meant to be a 0 or a \0 
+    pathToVertex[] = {R,0};
+
+    assert(getCampus(g, pathToVertex) == VACANT_VERTEX);
+    assert(getARC(g,pathToVertex) == VACANT_ARC);
+
+    pathToVertex[] = {R,R,R,R,R,0};
+
+    assert(getCampus(g, pathToVertex) == C);
+    assert(getARC(g, pathToVertex) == VACANT_ARC);
+
+    printf("Matt's getCampus and getArc functions passed!\n");
+
+    action exampleGetArc;
+    exampleGetArc.actionCode = OBTAIN_ARC; 
+    exampleGetArc.destination[0] = R;
+    exampleGetArc.disciplineFrom = 6;
+    exampleGetArc.disciplineTo = 6;
+    
+    diceScore = 2;
+    while (whoseTurn(g) <= UNI_C){
+
+    	assert(isLegalAction(g,exampleGetArc) == TRUE);
+
+        
+        if(whoseTurn(g)==UNI_A){
+        	makeAction(g,exampleGetArc);
+
+            assert(getKPIpoints(g, UNI_A) == 2);
+            assert(getKPIpoints(g, UNI_B) == 0);
+            assert(getKPIpoints(g, UNI_C) == 0);
+            assert(getStudents(g, UNI_A, STUDENT_BPS) == 2);
+            assert(getStudents(g, UNI_A, STUDENT_BQN) == 2);
+    
+        }else if (whoseTurn(g)==UNI_B){
+            exampleGetArc.destination[] = {L,L,L,L,L,0};
+            makeAction(g,exampleGetArc);
+
+            assert(getKPIpoints(g, UNI_A) == 2);
+            assert(getKPIpoints(g, UNI_B) == 2);
+            assert(getKPIpoints(g, UNI_C) == 0);
+            assert(getStudents(g, UNI_B, STUDENT_BPS) == 2);
+            assert(getStudents(g, UNI_B, STUDENT_BQN) == 2);
+
+        }else {
+            exampleGetArc[] = {R,R,R,R,R};
+            makeAction(g,exampleGetArc);
+
+            assert(getKPIpoints(g, UNI_A) == 2);
+            assert(getKPIpoints(g, UNI_B) == 2);
+            assert(getKPIpoints(g, UNI_C) == 2);
+            assert(getStudents(g, UNI_C, STUDENT_BPS) == 2);
+            assert(getStudents(g, UNI_C, STUDENT_BQN) == 2);
+        } 
+
+        assert(getMostPublications(g) == NO_ONE);
+
+        throwDice(g, diceScore);
+    }
+
+    printf("The getKPI and getMostPublications test passed!\n");
+
+
+    
+
+
+
+
+   
+
+    
+
+    
+
+
 
 
 	disposeGame(g);
-	printf("");
+	printf("All tests Passed");
 }

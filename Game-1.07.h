@@ -170,6 +170,11 @@ int getMostARCs (Game g);
 
 // which university currently has the prestige award for the most pubs?
 // this is NO_ONE until the first publication is made.
+
+//####################
+//Matt's test functions
+//####################
+
 int getMostPublications (Game g);
 
 // return the current turn number of the game -1,0,1, ..
@@ -217,6 +222,10 @@ int isLegalAction (Game g, action a);
 
 // return the number of KPI points the specified player currently has
 int getKPIpoints (Game g, int player);
+
+//#########################
+//Matt's test functions End
+//#########################
 
 // return the number of ARC grants the specified player currently has
 int getARCs (Game g, int player);
