@@ -180,21 +180,27 @@ static void testGame(){
     //Path to the vertex is an array with L for Left, R for Right and B for back.
     //How are we going to represent that? 
     //Not sure whether the 0 at the end is meant to be a 0 or a \0 
-    pathToVertex[] = {R,0};
+    pathToVertex[] = {'R','\0'};
 
     assert(getCampus(g, pathToVertex) == VACANT_VERTEX);
     assert(getARC(g,pathToVertex) == VACANT_ARC);
 
-    pathToVertex[] = {R,R,R,R,R,0};
+    pathToVertex[] = {'R','R','R','R','R','\0'};
 
-    assert(getCampus(g, pathToVertex) == C);
+    assert(getCampus(g, pathToVertex) == CAMPUS_B);
     assert(getARC(g, pathToVertex) == VACANT_ARC);
+
+    pathToVertex[] = {R,B,0};
+    assert(getCampus(g, pathToVertex) == CAMPUS_A);
+    assert(getARC(g, pathToVertex) == VACANT_ARC);
+
 
     printf("Matt's getCampus and getArc functions passed!\n");
 
     action exampleGetArc;
     exampleGetArc.actionCode = OBTAIN_ARC; 
-    exampleGetArc.destination[0] = R;
+    exampleGetArc.destination[0] = 'R';
+    exampleGetArc.destination[1] = '\0';
     exampleGetArc.disciplineFrom = 6;
     exampleGetArc.disciplineTo = 6;
     
@@ -205,16 +211,27 @@ static void testGame(){
 
         
         if(whoseTurn(g)==UNI_A){
+        	
+            assert (getCampus(g, exampleGetArc.destination) == CAMPUS_A);
+            assert (getARC(g, exampleGetArc.destination) == VACANT_ARC);
+
         	makeAction(g,exampleGetArc);
 
             assert(getKPIpoints(g, UNI_A) == 2);
             assert(getKPIpoints(g, UNI_B) == 0);
             assert(getKPIpoints(g, UNI_C) == 0);
+
             assert(getStudents(g, UNI_A, STUDENT_BPS) == 2);
             assert(getStudents(g, UNI_A, STUDENT_BQN) == 2);
+
+            assert (getARC(g, exampleGetArc.destination) == ARC_A);
     
         }else if (whoseTurn(g)==UNI_B){
-            exampleGetArc.destination[] = {L,L,L,L,L,0};
+            exampleGetArc.destination[] = {'L','L','L','L','L','\0'};
+            
+            assert (getCampus(g, exampleGetArc.destination) == CAMPUS_B);
+            assert (getARC(g, exampleGetArc.destination) == VACANT_ARC);
+
             makeAction(g,exampleGetArc);
 
             assert(getKPIpoints(g, UNI_A) == 2);
@@ -223,8 +240,14 @@ static void testGame(){
             assert(getStudents(g, UNI_B, STUDENT_BPS) == 2);
             assert(getStudents(g, UNI_B, STUDENT_BQN) == 2);
 
+            assert (getARC(g, exampleGetArc.destination) == ARC_B);
+
         }else {
-            exampleGetArc[] = {R,R,R,R,R};
+            exampleGetArc.destination[] = {'R','R','R','R','R','\0'};
+            
+            assert (getCampus(g, exampleGetArc.destination) == CAMPUS_A);
+            assert (getARC(g, exampleGetArc.destination) == VACANT_ARC);
+
             makeAction(g,exampleGetArc);
 
             assert(getKPIpoints(g, UNI_A) == 2);
@@ -232,6 +255,8 @@ static void testGame(){
             assert(getKPIpoints(g, UNI_C) == 2);
             assert(getStudents(g, UNI_C, STUDENT_BPS) == 2);
             assert(getStudents(g, UNI_C, STUDENT_BQN) == 2);
+
+            assert (getARC(g, exampleGetArc.destination) == ARC_C);
         } 
 
         assert(getMostPublications(g) == NO_ONE);
