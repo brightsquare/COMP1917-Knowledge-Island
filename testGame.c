@@ -169,222 +169,222 @@ static void testGame(){
 
 	Game gameForGetDisciplineTest;
 
-    // All THD disciplines
-    int disciplinesTHD[] = {
-        STUDENT_THD, STUDENT_THD, STUDENT_THD, STUDENT_THD,
-        STUDENT_THD, STUDENT_THD, STUDENT_THD, STUDENT_THD,
-        STUDENT_THD, STUDENT_THD, STUDENT_THD, STUDENT_THD,
-        STUDENT_THD, STUDENT_THD, STUDENT_THD, STUDENT_THD,
-        STUDENT_THD, STUDENT_THD, STUDENT_THD
-    };
+	// All THD disciplines
+	int disciplinesTHD[] = {
+		STUDENT_THD, STUDENT_THD, STUDENT_THD, STUDENT_THD,
+		STUDENT_THD, STUDENT_THD, STUDENT_THD, STUDENT_THD,
+		STUDENT_THD, STUDENT_THD, STUDENT_THD, STUDENT_THD,
+		STUDENT_THD, STUDENT_THD, STUDENT_THD, STUDENT_THD,
+		STUDENT_THD, STUDENT_THD, STUDENT_THD
+	};
 
-    // All BPS disciplines
-    int disciplinesBPS[] = {
-        STUDENT_BPS, STUDENT_BPS, STUDENT_BPS, STUDENT_BPS,
-        STUDENT_BPS, STUDENT_BPS, STUDENT_BPS, STUDENT_BPS,
-        STUDENT_BPS, STUDENT_BPS, STUDENT_BPS, STUDENT_BPS,
-        STUDENT_BPS, STUDENT_BPS, STUDENT_BPS, STUDENT_BPS,
-        STUDENT_BPS, STUDENT_BPS, STUDENT_BPS
-    };
+	// All BPS disciplines
+	int disciplinesBPS[] = {
+		STUDENT_BPS, STUDENT_BPS, STUDENT_BPS, STUDENT_BPS,
+		STUDENT_BPS, STUDENT_BPS, STUDENT_BPS, STUDENT_BPS,
+		STUDENT_BPS, STUDENT_BPS, STUDENT_BPS, STUDENT_BPS,
+		STUDENT_BPS, STUDENT_BPS, STUDENT_BPS, STUDENT_BPS,
+		STUDENT_BPS, STUDENT_BPS, STUDENT_BPS
+	};
 
-    // All BQN disciplines
-    int disciplinesBQN[] = {
-        STUDENT_BQN, STUDENT_BQN, STUDENT_BQN, STUDENT_BQN,
-        STUDENT_BQN, STUDENT_BQN, STUDENT_BQN, STUDENT_BQN,
-        STUDENT_BQN, STUDENT_BQN, STUDENT_BQN, STUDENT_BQN,
-        STUDENT_BQN, STUDENT_BQN, STUDENT_BQN, STUDENT_BQN,
-        STUDENT_BQN, STUDENT_BQN, STUDENT_BQN
-    };
+	// All BQN disciplines
+	int disciplinesBQN[] = {
+		STUDENT_BQN, STUDENT_BQN, STUDENT_BQN, STUDENT_BQN,
+		STUDENT_BQN, STUDENT_BQN, STUDENT_BQN, STUDENT_BQN,
+		STUDENT_BQN, STUDENT_BQN, STUDENT_BQN, STUDENT_BQN,
+		STUDENT_BQN, STUDENT_BQN, STUDENT_BQN, STUDENT_BQN,
+		STUDENT_BQN, STUDENT_BQN, STUDENT_BQN
+	};
 
-    // All MJ disciplines
-    int disciplinesMJ[] = {
-        STUDENT_MJ, STUDENT_MJ, STUDENT_MJ, STUDENT_MJ,
-        STUDENT_MJ, STUDENT_MJ, STUDENT_MJ, STUDENT_MJ,
-        STUDENT_MJ, STUDENT_MJ, STUDENT_MJ, STUDENT_MJ,
-        STUDENT_MJ, STUDENT_MJ, STUDENT_MJ, STUDENT_MJ,
-        STUDENT_MJ, STUDENT_MJ, STUDENT_MJ
-    };
+	// All MJ disciplines
+	int disciplinesMJ[] = {
+		STUDENT_MJ, STUDENT_MJ, STUDENT_MJ, STUDENT_MJ,
+		STUDENT_MJ, STUDENT_MJ, STUDENT_MJ, STUDENT_MJ,
+		STUDENT_MJ, STUDENT_MJ, STUDENT_MJ, STUDENT_MJ,
+		STUDENT_MJ, STUDENT_MJ, STUDENT_MJ, STUDENT_MJ,
+		STUDENT_MJ, STUDENT_MJ, STUDENT_MJ
+	};
 
-    // All MMONEY disciplines
-    int disciplinesMMONEY[] = {
-        STUDENT_MMONEY, STUDENT_MMONEY, STUDENT_MMONEY, STUDENT_MMONEY,
-        STUDENT_MMONEY, STUDENT_MMONEY, STUDENT_MMONEY, STUDENT_MMONEY,
-        STUDENT_MMONEY, STUDENT_MMONEY, STUDENT_MMONEY, STUDENT_MMONEY,
-        STUDENT_MMONEY, STUDENT_MMONEY, STUDENT_MMONEY, STUDENT_MMONEY,
-        STUDENT_MMONEY, STUDENT_MMONEY, STUDENT_MMONEY
-    };
+	// All MMONEY disciplines
+	int disciplinesMMONEY[] = {
+		STUDENT_MMONEY, STUDENT_MMONEY, STUDENT_MMONEY, STUDENT_MMONEY,
+		STUDENT_MMONEY, STUDENT_MMONEY, STUDENT_MMONEY, STUDENT_MMONEY,
+		STUDENT_MMONEY, STUDENT_MMONEY, STUDENT_MMONEY, STUDENT_MMONEY,
+		STUDENT_MMONEY, STUDENT_MMONEY, STUDENT_MMONEY, STUDENT_MMONEY,
+		STUDENT_MMONEY, STUDENT_MMONEY, STUDENT_MMONEY
+	};
 
-    // All MTV disciplines
-    int disciplinesMTV[] = {
-        STUDENT_MTV, STUDENT_MTV, STUDENT_MTV, STUDENT_MTV,
-        STUDENT_MTV, STUDENT_MTV, STUDENT_MTV, STUDENT_MTV,
-        STUDENT_MTV, STUDENT_MTV, STUDENT_MTV, STUDENT_MTV,
-        STUDENT_MTV, STUDENT_MTV, STUDENT_MTV, STUDENT_MTV,
-        STUDENT_MTV, STUDENT_MTV, STUDENT_MTV
-    };
+	// All MTV disciplines
+	int disciplinesMTV[] = {
+		STUDENT_MTV, STUDENT_MTV, STUDENT_MTV, STUDENT_MTV,
+		STUDENT_MTV, STUDENT_MTV, STUDENT_MTV, STUDENT_MTV,
+		STUDENT_MTV, STUDENT_MTV, STUDENT_MTV, STUDENT_MTV,
+		STUDENT_MTV, STUDENT_MTV, STUDENT_MTV, STUDENT_MTV,
+		STUDENT_MTV, STUDENT_MTV, STUDENT_MTV
+	};
 
-    // Custom disciplines
-    int disciplinesCustom[] = {
-        STUDENT_MTV, STUDENT_THD, STUDENT_MJ, STUDENT_MMONEY,
-        STUDENT_BPS, STUDENT_BPS, STUDENT_BQN, STUDENT_MJ,
-        STUDENT_THD, STUDENT_MTV, STUDENT_THD, STUDENT_MMONEY,
-        STUDENT_BQN, STUDENT_BQN, STUDENT_MJ, STUDENT_MTV,
-        STUDENT_BPS, STUDENT_THD, STUDENT_THD
-    };
-
-
+	// Custom disciplines
+	int disciplinesCustom[] = {
+		STUDENT_MTV, STUDENT_THD, STUDENT_MJ, STUDENT_MMONEY,
+		STUDENT_BPS, STUDENT_BPS, STUDENT_BQN, STUDENT_MJ,
+		STUDENT_THD, STUDENT_MTV, STUDENT_THD, STUDENT_MMONEY,
+		STUDENT_BQN, STUDENT_BQN, STUDENT_MJ, STUDENT_MTV,
+		STUDENT_BPS, STUDENT_THD, STUDENT_THD
+	};
 
 
-    gameForGetDisciplineTest = newGame(DEFAULT_DISCIPLINES, dice);
 
-    // Check all regions in the board
-    int counterForGetDisciplineTest = 0;
-    while (counterForGetDisciplineTest < BOARD_REGIONS) {
-        assert(getDiscipline(gameForGetDisciplineTest,
-            counterForGetDisciplineTest),
-            disciplines[counterForGetDisciplineTest]);
-    }
 
-    gameForGetDisciplineTest = newGame(disciplinesTHD, dice);
+	gameForGetDisciplineTest = newGame(DEFAULT_DISCIPLINES, dice);
 
-    // Check all regions in the board
-    int counterForGetDisciplineTest = 0;
-    while (counterForGetDisciplineTest < BOARD_REGIONS) {
-        assert(getDiscipline(gameForGetDisciplineTest,
-            counterForGetDisciplineTest),
-            disciplinesTHD[counterForGetDisciplineTest]);
-    }
+	// Check all regions in the board
+	int counterForGetDisciplineTest = 0;
+	while (counterForGetDisciplineTest < BOARD_REGIONS) {
+		assert(getDiscipline(gameForGetDisciplineTest,
+			counterForGetDisciplineTest),
+			disciplines[counterForGetDisciplineTest]);
+	}
 
-    gameForGetDisciplineTest = newGame(disciplinesBPS, dice);
+	gameForGetDisciplineTest = newGame(disciplinesTHD, dice);
 
-    // Check all regions in the board
-    int counterForGetDisciplineTest = 0;
-    while (counterForGetDisciplineTest < BOARD_REGIONS) {
-        assert(getDiscipline(gameForGetDisciplineTest,
-            counterForGetDisciplineTest),
-            disciplinesBPS[counterForGetDisciplineTest]);
-    }
+	// Check all regions in the board
+	int counterForGetDisciplineTest = 0;
+	while (counterForGetDisciplineTest < BOARD_REGIONS) {
+		assert(getDiscipline(gameForGetDisciplineTest,
+			counterForGetDisciplineTest),
+			disciplinesTHD[counterForGetDisciplineTest]);
+	}
 
-    gameForGetDisciplineTest = newGame(disciplinesBQN, dice);
+	gameForGetDisciplineTest = newGame(disciplinesBPS, dice);
 
-    // Check all regions in the board
-    int counterForGetDisciplineTest = 0;
-    while (counterForGetDisciplineTest < BOARD_REGIONS) {
-        assert(getDiscipline(gameForGetDisciplineTest,
-            counterForGetDisciplineTest),
-            disciplinesBQN[counterForGetDisciplineTest]);
-    }
+	// Check all regions in the board
+	int counterForGetDisciplineTest = 0;
+	while (counterForGetDisciplineTest < BOARD_REGIONS) {
+		assert(getDiscipline(gameForGetDisciplineTest,
+			counterForGetDisciplineTest),
+			disciplinesBPS[counterForGetDisciplineTest]);
+	}
 
-    gameForGetDisciplineTest = newGame(disciplinesMJ, dice);
+	gameForGetDisciplineTest = newGame(disciplinesBQN, dice);
 
-    // Check all regions in the board
-    int counterForGetDisciplineTest = 0;
-    while (counterForGetDisciplineTest < BOARD_REGIONS) {
-        assert(getDiscipline(gameForGetDisciplineTest,
-            counterForGetDisciplineTest),
-            disciplinesMJ[counterForGetDisciplineTest]);
-    }
+	// Check all regions in the board
+	int counterForGetDisciplineTest = 0;
+	while (counterForGetDisciplineTest < BOARD_REGIONS) {
+		assert(getDiscipline(gameForGetDisciplineTest,
+			counterForGetDisciplineTest),
+			disciplinesBQN[counterForGetDisciplineTest]);
+	}
 
-    gameForGetDisciplineTest = newGame(disciplinesMMONEY, dice);
+	gameForGetDisciplineTest = newGame(disciplinesMJ, dice);
 
-    // Check all regions in the board
-    int counterForGetDisciplineTest = 0;
-    while (counterForGetDisciplineTest < BOARD_REGIONS) {
-        assert(getDiscipline(gameForGetDisciplineTest,
-            counterForGetDisciplineTest),
-            disciplinesMMONEY[counterForGetDisciplineTest]);
-    }
+	// Check all regions in the board
+	int counterForGetDisciplineTest = 0;
+	while (counterForGetDisciplineTest < BOARD_REGIONS) {
+		assert(getDiscipline(gameForGetDisciplineTest,
+			counterForGetDisciplineTest),
+			disciplinesMJ[counterForGetDisciplineTest]);
+	}
 
-    gameForGetDisciplineTest = newGame(disciplinesMTV, dice);
+	gameForGetDisciplineTest = newGame(disciplinesMMONEY, dice);
 
-    // Check all regions in the board
-    int counterForGetDisciplineTest = 0;
-    while (counterForGetDisciplineTest < BOARD_REGIONS) {
-        assert(getDiscipline(gameForGetDisciplineTest,
-            counterForGetDisciplineTest),
-            disciplinesMTV[counterForGetDisciplineTest]);
-    }
+	// Check all regions in the board
+	int counterForGetDisciplineTest = 0;
+	while (counterForGetDisciplineTest < BOARD_REGIONS) {
+		assert(getDiscipline(gameForGetDisciplineTest,
+			counterForGetDisciplineTest),
+			disciplinesMMONEY[counterForGetDisciplineTest]);
+	}
 
-    gameForGetDisciplineTest = newGame(disciplinesCustom, dice);
+	gameForGetDisciplineTest = newGame(disciplinesMTV, dice);
 
-    // Check all regions in the board
-    int counterForGetDisciplineTest = 0;
-    while (counterForGetDisciplineTest < BOARD_REGIONS) {
-        assert(getDiscipline(gameForGetDisciplineTest,
-            counterForGetDisciplineTest),
-            disciplinesCustom[counterForGetDisciplineTest]);
-    }
+	// Check all regions in the board
+	int counterForGetDisciplineTest = 0;
+	while (counterForGetDisciplineTest < BOARD_REGIONS) {
+		assert(getDiscipline(gameForGetDisciplineTest,
+			counterForGetDisciplineTest),
+			disciplinesMTV[counterForGetDisciplineTest]);
+	}
+
+	gameForGetDisciplineTest = newGame(disciplinesCustom, dice);
+
+	// Check all regions in the board
+	int counterForGetDisciplineTest = 0;
+	while (counterForGetDisciplineTest < BOARD_REGIONS) {
+		assert(getDiscipline(gameForGetDisciplineTest,
+			counterForGetDisciplineTest),
+			disciplinesCustom[counterForGetDisciplineTest]);
+	}
 	
 	/*
 	 * test for:
 	 * int getDiceValue (Game g, int regionID);
 	 */
 
-    Game gameForGetDiceValue;
+	Game gameForGetDiceValue;
 
-    int diceCustom1[] = {
-        3, 1, 4, 1,
-        5, 9, 2, 6,
-        5, 3, 5, 8,
-        9, 7, 9, 3,
-        2, 3, 8
-    };
+	int diceCustom1[] = {
+		3, 1, 4, 1,
+		5, 9, 2, 6,
+		5, 3, 5, 8,
+		9, 7, 9, 3,
+		2, 3, 8
+	};
 
-    int diceCustom2[] = {
-        6, 2, 6, 4,
-        3, 3, 8, 3,
-        2, 7, 9, 5,
-        0, 2, 8, 8,
-        4, 1, 9
-    };
+	int diceCustom2[] = {
+		6, 2, 6, 4,
+		3, 3, 8, 3,
+		2, 7, 9, 5,
+		0, 2, 8, 8,
+		4, 1, 9
+	};
 
-    int diceCustom3[] = {
-        10, 11, 12, 0,
-        10, 11, 12, 0,
-        10, 11, 12, 0,
-        10, 11, 12, 0,
-        11, 12, 0
-    };
+	int diceCustom3[] = {
+		10, 11, 12, 0,
+		10, 11, 12, 0,
+		10, 11, 12, 0,
+		10, 11, 12, 0,
+		11, 12, 0
+	};
 
-    gameForGetDiceValue = newGame(DEFAULT_DISCIPLINES, dice);
+	gameForGetDiceValue = newGame(DEFAULT_DISCIPLINES, dice);
 
-    // Check all regions in the board
-    int counterForGetDisciplineTest = 0;
-    while (counterForGetDisciplineTest < BOARD_REGIONS) {
-        assert(getDiceValue(gameForGetDisciplineTest,
-            counterForGetDisciplineTest),
-            dice[counterForGetDisciplineTest]);
-    }
+	// Check all regions in the board
+	int counterForGetDisciplineTest = 0;
+	while (counterForGetDisciplineTest < BOARD_REGIONS) {
+		assert(getDiceValue(gameForGetDisciplineTest,
+			counterForGetDisciplineTest),
+			dice[counterForGetDisciplineTest]);
+	}
 
-    gameForGetDiceValue = newGame(DEFAULT_DISCIPLINES, diceCustom1);
+	gameForGetDiceValue = newGame(DEFAULT_DISCIPLINES, diceCustom1);
 
-    // Check all regions in the board
-    int counterForGetDisciplineTest = 0;
-    while (counterForGetDisciplineTest < BOARD_REGIONS) {
-        assert(getDiceValue(gameForGetDisciplineTest,
-            counterForGetDisciplineTest),
-            diceCustom1[counterForGetDisciplineTest]);
-    }
+	// Check all regions in the board
+	int counterForGetDisciplineTest = 0;
+	while (counterForGetDisciplineTest < BOARD_REGIONS) {
+		assert(getDiceValue(gameForGetDisciplineTest,
+			counterForGetDisciplineTest),
+			diceCustom1[counterForGetDisciplineTest]);
+	}
 
-    gameForGetDiceValue = newGame(DEFAULT_DISCIPLINES, diceCustom2);
+	gameForGetDiceValue = newGame(DEFAULT_DISCIPLINES, diceCustom2);
 
-    // Check all regions in the board
-    int counterForGetDisciplineTest = 0;
-    while (counterForGetDisciplineTest < BOARD_REGIONS) {
-        assert(getDiceValue(gameForGetDisciplineTest,
-            counterForGetDisciplineTest),
-            diceCustom2[counterForGetDisciplineTest]);
-    }
+	// Check all regions in the board
+	int counterForGetDisciplineTest = 0;
+	while (counterForGetDisciplineTest < BOARD_REGIONS) {
+		assert(getDiceValue(gameForGetDisciplineTest,
+			counterForGetDisciplineTest),
+			diceCustom2[counterForGetDisciplineTest]);
+	}
 
-    gameForGetDiceValue = newGame(DEFAULT_DISCIPLINES, diceCustom3);
+	gameForGetDiceValue = newGame(DEFAULT_DISCIPLINES, diceCustom3);
 
-    // Check all regions in the board
-    int counterForGetDisciplineTest = 0;
-    while (counterForGetDisciplineTest < BOARD_REGIONS) {
-        assert(getDiceValue(gameForGetDisciplineTest,
-            counterForGetDisciplineTest),
-            diceCustom3[counterForGetDisciplineTest]);
-    }
+	// Check all regions in the board
+	int counterForGetDisciplineTest = 0;
+	while (counterForGetDisciplineTest < BOARD_REGIONS) {
+		assert(getDiceValue(gameForGetDisciplineTest,
+			counterForGetDisciplineTest),
+			diceCustom3[counterForGetDisciplineTest]);
+	}
 	
 	/*
 	 * test for:

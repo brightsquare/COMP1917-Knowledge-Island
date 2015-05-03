@@ -73,21 +73,21 @@
 	where neighbor[LEFT] = {vertexID = 0}
 	*/
 	typedef struct _region{
-	 int regionID; 
-	 int diceVal;
-	 vertex* list[6];
-	 int discipline;
-	}region;
+		int regionID; 
+		int diceVal;
+		vertex* list[6];
+		int discipline;
+	} region;
 
-	//actual game
+	// struct to hold the actual game
 	struct _game{
-	 vertex* origin;
-	 region regions[NUM_REGIONS];
-	 int whoseTurn;
-	 int numDice;
-	 int numG08;
-	 int mostARC,mostPublication;
-	 player playerObjects[NUM_UNIS];
+		vertex* origin;
+		region regions[NUM_REGIONS];
+		int whoseTurn;
+		int numDice;
+		int numG08;
+		int mostARC,mostPublication;
+		player playerObjects[NUM_UNIS];
 	};
 
 //##########################################################################
