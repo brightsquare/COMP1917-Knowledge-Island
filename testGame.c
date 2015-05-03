@@ -709,18 +709,5 @@ static void testGame(){
      */
 
 	disposeGame(g);
-<<<<<<< HEAD
 	printf("All tests Passed");
 }
-=======
-	printf("");
-}
-
-
-
-
-
-     
-    
-
->>>>>>> origin/master
