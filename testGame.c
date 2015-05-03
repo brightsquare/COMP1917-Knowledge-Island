@@ -133,8 +133,6 @@ static void testGame(){
         }
         i++;
     }
-
-<<<<<<< HEAD
 	disposeGame(g);
 
 
@@ -293,10 +291,6 @@ static void testGame(){
     printf("isLegalAction tests passed!\n");
 
 
-
-
-
-=======
     action a2;
     a2.actionCode=OBTAIN_ARC;
     a2.destination[0]="L";
@@ -354,7 +348,6 @@ static void testGame(){
         }
         i++;
     }
->>>>>>> origin/master
 
     action a3;
     a3.actionCode=BUILD_CAMPUS;
