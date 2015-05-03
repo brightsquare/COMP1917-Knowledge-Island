@@ -46,21 +46,21 @@
 		int numPublication;
 		int resources[6],ratio[6];//<<<<<<ratio is important
 		vertex *start[2];
-	}player;
+	} player;
 
 	typedef struct _vertex{
-	 	//owner of this vertex or NULL
-	 	player *owner;
-	 	//campus at this vertex or VACANT_VERTEX
-	 	int campus;
-	 	//vertex Id of this vertex
-	 	int vertexID;
-	 	//ARC grants corresponding with neighbor, see example
-	 	int ARC[4];
-	  int region[3];
-	 	//next pointers to neghboring vertices
-	 	struct _vertex *next, *neighbor[4];
-	 	//neighbor order is CLOCKWISE, example coming soon
+		//owner of this vertex or NULL
+		player *owner;
+		//campus at this vertex or VACANT_VERTEX
+		int campus;
+		//vertex Id of this vertex
+		int vertexID;
+		//ARC grants corresponding with neighbor, see example
+		int ARC[4];
+		int region[3];
+		//next pointers to neghboring vertices
+		struct _vertex *next, *neighbor[4];
+		//neighbor order is CLOCKWISE, example coming soon
 	}vertex;
 	/*
 	Example for arc
@@ -147,26 +147,26 @@
 			i = 0;
 			while(i<numVertices){
 				it->owner = NO_ONE;
-		 		it->campus = VACANT_VERTEX;
-		 		it->vertexID = i;
-		 		it->ARC[0] = VACANT_ARC;
-		 		it->ARC[1] = VACANT_ARC;
-		 		it->ARC[2] = VACANT_ARC;
-		 		it->ARC[3] = VACANT_ARC;
+				it->campus = VACANT_VERTEX;
+				it->vertexID = i;
+				it->ARC[0] = VACANT_ARC;
+				it->ARC[1] = VACANT_ARC;
+				it->ARC[2] = VACANT_ARC;
+				it->ARC[3] = VACANT_ARC;
 
-		 		it->neighbor[0] = NULL;
-		 		it->neighbor[1] = NULL;
-		 		it->neighbor[2] = NULL;
-		 		it->neighbor[3] = NULL;
-		 		if(i<numVertices-1){
-		 			tmp = it;
-		 			it++;
-		 			tmp->next = it;
-		 		}
-		 		else{
-		 			it->next = NULL;
-		 		}
-		 		i++;
+				it->neighbor[0] = NULL;
+				it->neighbor[1] = NULL;
+				it->neighbor[2] = NULL;
+				it->neighbor[3] = NULL;
+				if(i<numVertices-1){
+					tmp = it;
+					it++;
+					tmp->next = it;
+				}
+				else{
+					it->next = NULL;
+				}
+				i++;
 			}
 			tmp = ret->origin;
 
