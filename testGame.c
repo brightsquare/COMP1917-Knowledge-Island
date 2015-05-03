@@ -391,6 +391,9 @@ static void testGame(){
 	 * int getMostARCs (Game g);
 	 */
 
+
+	// Not finished yet...
+
 	// Simulates an 11 roll game, dice rolls: 2...11
 	Game gameForGetDisciplineTest = newGame(disciplines, dice);
 	assert(gameForGetDisciplineTest != NULL);
