@@ -18,6 +18,14 @@
 #define RIGHT 2
 #define LEFT 3
 
+#define NO_DISCIPLINE 6
+
+#define NUM_RESOURCES 6
+#define STARTING_POINTS_PER_PLAYER 2
+#define NUM_VERTICES_PER_REGION 6
+#define DIRECTIONS 4
+#define REGIONS_PER_VERTEX 3
+
 //I don't know how things turn out and this might be scraped
 #define NUM_CENTRE 1
 #define NUM_INNER (NUM_CENTRE*6)
@@ -35,7 +43,6 @@
 //##########################################################################
 //BEGINNING OF STRUCT DEFINITIONS
 //##########################################################################
-
 	typedef struct _player{
 		int playerID;
 		int KPI;
@@ -44,9 +51,16 @@
 		int numCampus;
 		int numG08;
 		int numPublication;
-		int resources[6],ratio[6];//<<<<<<ratio is important
-		vertex *start[2];
+		int resources[NUM_RESOURCES],ratio[NUM_RESOURCES];//<<<<<<ratio is important
+		vertex *start[STARTING_POINTS_PER_PLAYER];
 	}player;
+
+	typedef struct _region{
+	 int regionID; 
+	 int diceVal;
+	 vertex* list[NUM_VERTICES_PER_REGION];
+	 int discipline;
+	}region;//actual game
 
 	typedef struct _vertex{
 	 	//owner of this vertex or NULL
@@ -56,11 +70,11 @@
 	 	//vertex Id of this vertex
 	 	int vertexID;
 	 	//ARC grants corresponding with neighbor, see example
-	 	int ARC[4];
-	  int region[3];
+	 	int ARC[DIRECTIONS];
+	    region *regions[REGIONS_PER_VERTEX];
 	 	//next pointers to neghboring vertices
-	 	struct _vertex *next, *neighbor[4];
-	 	//neighbor order is CLOCKWISE, example coming soon
+	 	struct _vertex *next, *neighbor[DIRECTIONS];
+	 	int training;
 	}vertex;
 	/*
 	Example for arc
@@ -72,21 +86,15 @@
 	ARC[LEFT] = ARC_A
 	where neighbor[LEFT] = {vertexID = 0}
 	*/
-	typedef struct _region{
-	 int regionID; 
-	 int diceVal;
-	 vertex* list[6];
-	 int discipline;
-	}region;
 
-	//actual game
+
 	struct _game{
 	 vertex* origin;
 	 region regions[NUM_REGIONS];
 	 int whoseTurn;
-	 int numDice;
+	 int diceValue;
 	 int numG08;
-	 int mostARC,mostPublication;
+	 player *mostARC,*mostPublication;
 	 player playerObjects[NUM_UNIS];
 	};
 
@@ -119,7 +127,7 @@
 		Game ret = malloc(sizeof(struct _game));//freed
 
 		vertex *tmp = NULL,*it = NULL;
-		int i = 0;
+		int i = 0,j=0;
 		int centre = NUM_CENTRE,inner = NUM_INNER,out1 = NUM_OUTER1,out2 = NUM_OUTER2;
 		assert(centre + inner + out1 + out2 == NUM_REGIONS);
 
@@ -255,6 +263,32 @@
 			#ifdef DEBUG_newGame
 				printf("ret!=NULL\n");
 			#endif
+		
+		//Initializing all player values
+			i = UNI_A;
+			while(i<=UNI_C){
+				g->playerObjects[i].playerID = i;
+				g->playerObjects[i].KPI = 0;
+				g->playerObjects[i].numARC = 0;
+
+				g->playerObjects[i].numPatent = 0;
+				g->playerObjects[i].numCampus = STARTING_POINTS_PER_PLAYER;
+				g->playerObjects[i].numG08 = 0;
+				g->playerObjects[i].numPublication = 0;
+				for(j=0;j<NUM_RESOURCES;j++){
+					g->playerObjects[i].ratio = 3;
+				}
+
+				g->playerObjects[i].resources[STUDENT_THD] = 0;
+				g->playerObjects[i].resources[STUDENT_BPS] = 3;
+				g->playerObjects[i].resources[STUDENT_BQN] = 3;
+				g->playerObjects[i].resources[STUDENT_MJ] = 1;
+				g->playerObjects[i].resources[STUDENT_MTV] = 1;
+				g->playerObjects[i].resources[STUDENT_MMONEY]=1;
+				i++;
+			}
+			//links still need to be made to vertices
+
 		return ret;
 	}
 
