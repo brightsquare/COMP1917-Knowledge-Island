@@ -81,7 +81,9 @@ static void testGame(){
     a1.actionCode=OBTAIN_ARC;
     a1.destination[0]="L";
     a1.destination[1]="\0";
+    assert(isLegalAction(g,a1)==TRUE);
     makeAction(g,a1);
+    
     //check isLegal(not finished)
     
     assert(getMostARCs(g) == UNI_A);
@@ -134,6 +136,8 @@ static void testGame(){
 
 <<<<<<< HEAD
 	disposeGame(g);
+
+
     //####################
     //Matt's test functions
     //####################
@@ -173,7 +177,7 @@ static void testGame(){
 
     //Test the getCampus and getARC
 
-    path pathToVertex[0] = 0;
+    path pathToVertex[0] = '\0';
 
     assert(getCampus(g, pathToVertex) == CAMPUS_A);
 
@@ -190,32 +194,33 @@ static void testGame(){
     assert(getCampus(g, pathToVertex) == CAMPUS_B);
     assert(getARC(g, pathToVertex) == VACANT_ARC);
 
-    pathToVertex[] = {R,B,0};
+    pathToVertex[] = {'R','B','\0'};
     assert(getCampus(g, pathToVertex) == CAMPUS_A);
     assert(getARC(g, pathToVertex) == VACANT_ARC);
 
 
     printf("Matt's getCampus and getArc functions passed!\n");
 
-    action exampleGetArc;
-    exampleGetArc.actionCode = OBTAIN_ARC; 
-    exampleGetArc.destination[0] = 'R';
-    exampleGetArc.destination[1] = '\0';
-    exampleGetArc.disciplineFrom = 6;
-    exampleGetArc.disciplineTo = 6;
+    action exampleActionMatt;
+    exampleActionMatt.actionCode = OBTAIN_ARC; 
+    exampleActionMatt.destination[0] = 'R';
+    exampleActionMatt.destination[1] = '\0';
+    exampleActionMatt.disciplineFrom = 6;
+    exampleActionMatt.disciplineTo = 6;
     
     diceScore = 2;
     while (whoseTurn(g) <= UNI_C){
 
-    	assert(isLegalAction(g,exampleGetArc) == TRUE);
+    	
 
         
         if(whoseTurn(g)==UNI_A){
         	
-            assert (getCampus(g, exampleGetArc.destination) == CAMPUS_A);
-            assert (getARC(g, exampleGetArc.destination) == VACANT_ARC);
+            assert (getCampus(g, exampleActionMatt.destination) == CAMPUS_A);
+            assert (getARC(g, exampleActionMatt.destination) == VACANT_ARC);
 
-        	makeAction(g,exampleGetArc);
+            assert(isLegalAction(g,exampleActionMatt) == TRUE);
+        	makeAction(g,exampleActionMatt);
 
             assert(getKPIpoints(g, UNI_A) == 2);
             assert(getKPIpoints(g, UNI_B) == 0);
@@ -224,15 +229,16 @@ static void testGame(){
             assert(getStudents(g, UNI_A, STUDENT_BPS) == 2);
             assert(getStudents(g, UNI_A, STUDENT_BQN) == 2);
 
-            assert (getARC(g, exampleGetArc.destination) == ARC_A);
+            assert (getARC(g, exampleActionMatt.destination) == ARC_A);
     
         }else if (whoseTurn(g)==UNI_B){
-            exampleGetArc.destination[] = {'L','L','L','L','L','\0'};
+            exampleActionMatt.destination[] = {'L','L','L','L','L','\0'};
             
-            assert (getCampus(g, exampleGetArc.destination) == CAMPUS_B);
-            assert (getARC(g, exampleGetArc.destination) == VACANT_ARC);
-
-            makeAction(g,exampleGetArc);
+            assert (getCampus(g, exampleActionMatt.destination) == CAMPUS_B);
+            assert (getARC(g, exampleActionMatt.destination) == VACANT_ARC);
+            
+            assert(isLegalAction(g,exampleActionMatt) == TRUE);
+            makeAction(g,exampleActionMatt);
 
             assert(getKPIpoints(g, UNI_A) == 2);
             assert(getKPIpoints(g, UNI_B) == 2);
@@ -240,15 +246,16 @@ static void testGame(){
             assert(getStudents(g, UNI_B, STUDENT_BPS) == 2);
             assert(getStudents(g, UNI_B, STUDENT_BQN) == 2);
 
-            assert (getARC(g, exampleGetArc.destination) == ARC_B);
+            assert (getARC(g, exampleActionMatt.destination) == ARC_B);
 
         }else {
-            exampleGetArc.destination[] = {'R','R','R','R','R','\0'};
+            exampleActionMatt.destination[] = {'R','R','R','R','R','\0'};
             
-            assert (getCampus(g, exampleGetArc.destination) == CAMPUS_A);
-            assert (getARC(g, exampleGetArc.destination) == VACANT_ARC);
+            assert (getCampus(g, exampleActionMatt.destination) == CAMPUS_A);
+            assert (getARC(g, exampleActionMatt.destination) == VACANT_ARC);
 
-            makeAction(g,exampleGetArc);
+            assert(isLegalAction(g,exampleActionMatt) == TRUE);
+            makeAction(g,exampleActionMatt);
 
             assert(getKPIpoints(g, UNI_A) == 2);
             assert(getKPIpoints(g, UNI_B) == 2);
@@ -256,7 +263,7 @@ static void testGame(){
             assert(getStudents(g, UNI_C, STUDENT_BPS) == 2);
             assert(getStudents(g, UNI_C, STUDENT_BQN) == 2);
 
-            assert (getARC(g, exampleGetArc.destination) == ARC_C);
+            assert (getARC(g, exampleActionMatt.destination) == ARC_C);
         } 
 
         assert(getMostPublications(g) == NO_ONE);
@@ -264,19 +271,29 @@ static void testGame(){
         throwDice(g, diceScore);
     }
 
+
     printf("The getKPI and getMostPublications test passed!\n");
 
 
-    
+    //Test isLegalAction false & the PASS action
+
+    exampleActionMatt.destination[] = {'B','\0'};
+    assert(isLegalAction(g,exampleActionMatt) == FALSE);
+    exampleActionMatt.destination[] = {'L', 'L', 'L', '\0'};
+    assert(isLegalAction(g,exampleActionMatt) == FALSE);
+    exampleActionMatt.actionCode = BUILD_GO8;
+    assert(isLegalAction(g,exampleActionMatt) == FALSE);
+    exampleActionMatt.actionCode = START_SPINOFF;
+    assert(isLegalAction(g,exampleActionMatt) == FALSE);
+    exampleActionMatt.actionCode = RETRAIN_STUDENTS;
+    assert(isLegalAction(g,exampleActionMatt) == FALSE);
+    exampleActionMatt.actionCode = PASS;
+    assert(isLegalAction(g,exampleActionMatt) == TRUE);
+
+    printf("isLegalAction tests passed!\n");
 
 
 
-
-   
-
-    
-
-    
 
 
 =======
