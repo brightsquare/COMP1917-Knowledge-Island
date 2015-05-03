@@ -13,13 +13,12 @@
 
 static void testGame();
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
 	testGame();
 	return EXIT_SUCCESS;
 }
 
-static void testGame(){
+static void testGame() {
   int i,j,k;
 
   //intiialize and check newGame
@@ -392,36 +391,40 @@ static void testGame(){
 	 */
 
 
-	// Not finished yet...
+	// This needs more work
 
 	// Simulates an 11 roll game, dice rolls: 2...11
-	Game gameForGetDisciplineTest = newGame(disciplines, dice);
+	Game gameForGetMostARCs = newGame(disciplines, dice);
 	assert(gameForGetDisciplineTest != NULL);
 	int diceScore = 2;
 	int turnNumber = 0;
 	int whoseTurn = UNI_A;
 	i = UNI_A;
 
-	while (diceScore <= 12) {
-		throwDice (g, diceScore);
-
-		//cycles through the players each time turnNumber is a multiple of 3
-		whoseTurn = (turnNumber%NUM_UNIS)+1;
-		//test the easy getter functions
-		assert(getWhoseTurn(g) == whoseTurn);
-		assert(getTurnNumber(g) == turnNumber);
-		//nobody has made any actions
-		while(i<=UNI_C){
-			assert(getKPIpoints(g,i)==0);
-			i++;
-		}
-		assert(getMostPublications(g) == NO_ONE);
+	assert(getMostARCs(gameForGetMostARCs) == NO_ONE);
 
 
 
-		diceScore++;
-		turnNumber++;
-	}
+	// while (diceScore <= 12) {
+	// 	throwDice (g, diceScore);
+
+	// 	//cycles through the players each time turnNumber is a multiple of 3
+	// 	whoseTurn = (turnNumber%NUM_UNIS)+1;
+	// 	//test the easy getter functions
+	// 	assert(getWhoseTurn(g) == whoseTurn);
+	// 	assert(getTurnNumber(g) == turnNumber);
+	// 	//nobody has made any actions
+	// 	while(i<=UNI_C){
+	// 		assert(getKPIpoints(g,i)==0);
+	// 		i++;
+	// 	}
+	// 	assert(getMostPublications(g) == NO_ONE);
+
+
+
+	// 	diceScore++;
+	// 	turnNumber++;
+	// }
 
 	//########################################
 	// End Paulus' test functions
