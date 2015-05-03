@@ -168,12 +168,12 @@ int getDiceValue (Game g, int regionID);
 // has started.  
 int getMostARCs (Game g);
 
-// which university currently has the prestige award for the most pubs?
-// this is NO_ONE until the first publication is made.
-
 //####################
 //Matt's test functions
 //####################
+
+// which university currently has the prestige award for the most pubs?
+// this is NO_ONE until the first publication is made.
 
 int getMostPublications (Game g);
 
