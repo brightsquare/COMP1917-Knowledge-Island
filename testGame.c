@@ -87,7 +87,7 @@ static void testGame(){
 	
 	//check isLegal(not finished)
 	
-	assert(getMostARCs(g) == UNI_A);
+	assert(getMostARCs(g) == NO_ONE);
 	assert(getMostPublications(g) == NO_ONE);
 	assert(getTurnNumber(g) == 0);
 	assert(getWhoseTurn(g) == UNI_A);
